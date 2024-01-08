@@ -1,0 +1,36 @@
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+
+<body>
+  <%- include("../partials/nav.ejs") %>
+
+  <div class="details content">
+    <h2><%= blog.title %></h2>
+    <div class="content">
+      <p><%= blog.body %></p>
+    </div>
+    <a class="delete" data-doc="<%= blog._id %>">
+      <img src="/trashcan.svg" alt="delete icon">
+    </a>
+  </div>
+
+  <%- include("../partials/footer.ejs") %>
+
+  <script>
+    const trashcan = document.querySelector('a.delete');//amchor tag's delete
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/blogs/${trashcan.dataset.doc}`;// /blogs/id
+      fetch(endpoint, {
+        method: 'DELETE',//delete request
+      })
+      .then(response => response.json())//response is json data that comes back from what we wrote on app.js, we pass json onto an object response.json which we cant use
+      .then(data => window.location.href = data.redirect)//we get access to the above data now here,redirect here like this since it is not app.js
+      .catch(err => console.log(err));
+    });
+    
+  </script>
+</body>
+</html>
+
+
+
