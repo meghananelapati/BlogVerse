@@ -83,24 +83,13 @@ app.get('/single-blog',(req,res)=>{
 
 //routes
 app.get('/',(req,res)=>{
-   // res.write('');
-    //res.send('<p>home page</p>');//status codes are default, content type too
-    //res.sendFile('./views/index.html',{root:__dirname});//cuz express sees the absolute path not the relative one
-    // const blogs = [
-    //     {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-    //     {title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-    //     {title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-    //   ];
-    // res.render('index',{title:'Home',blogs});//uses index.ejs
 
     res.redirect('/blogs')
     
 });
 
 app.get('/about',(req,res)=>{
-     //res.send('<p>about page</p>');//status codes are default, content type too
-    //res.sendFile('./views/about.html',{root:__dirname});
-    
+
     res.render('about',{title:'About'});
 
  });
@@ -118,9 +107,7 @@ app.use((req,res)=>{
     //res.status(404).sendFile('./views/404.html',{root:__dirname});
     res.status(404).render('404',{title:'404'});
 
-    //we set status code here, because it does not know its an error, unlike normal(OK) or redirect status codes i.e 200s or 300s
-    //if finds a match with get, implements,else use//use for every single request,get comes in the way,uses get else use
-    //it should be at the end or else only use operates instead of everything else (get)
+  
 });
 
 
